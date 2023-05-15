@@ -48,7 +48,7 @@ class Server:
                 - data: the dataset page (equivalent to return from previous
                         task)
                 - next_page: number of the next page, None if no next page
-                - prev_page: number of the previous page, None if no 
+                - prev_page: number of the previous page, None if no
                             previous page
                 - total_pages: the total number of pages in the dataset
                                 as an integer
