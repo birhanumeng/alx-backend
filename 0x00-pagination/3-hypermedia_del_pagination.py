@@ -48,21 +48,22 @@ class Server:
               page_size - the number of items on the page
               data - the data in the page itself '''
         assert 0 <= index < len(self.dataset())
+
         indexed_dataset = self.indexed_dataset()
         indexed_page = {}
 
-        idx = index
-        while (len(indexed_page) < page_size and idx < len(self.dataset())):
-            if idx in indexed_dataset:
+        i = index
+        while (len(indexed_page) < page_size and i < len(self.dataset())):
+            if i in indexed_dataset:
                 indexed_page[i] = indexed_dataset[i]
-            idx += 1
+            i += 1
 
-        page_key = indexed_page.keys()
-        page_value = list(indexed_page.values())
+        page = list(indexed_page.values())
+        page_indices = indexed_page.keys()
 
         return {
             'index': index,
-            'next_index': max(page_key) + 1,
-            'page_size': len(page_value),
-            'data': page_value
+            'next_index': max(page_indices) + 1,
+            'page_size': len(page),
+            'data': page
         }
