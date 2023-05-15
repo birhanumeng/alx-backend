@@ -28,15 +28,15 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """Return the list of dataset by using two integer paramatres"""
-        assert page > 0 and page_size > 0
+        ''' Return page of dataset. '''
         assert isinstance(page, int) and isinstance(page_size, int)
+        assert page > 0 and page_size > 0
 
         indices = index_range(page, page_size)
-        start_idx = indices[0]
-        end_idx = indices[1]
+        start = indices[0]
+        end = indices[1]
 
         try:
-            return self.dataset()[start_idx:end_idx]
+            return self.dataset()[start:end]
         except IndexError:
             return []
