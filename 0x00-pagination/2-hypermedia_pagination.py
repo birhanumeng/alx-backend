@@ -53,15 +53,12 @@ class Server:
                 - total_pages: the total number of pages in the dataset
                                 as an integer
         """
-        page_data = self.get_page(page, page_size)
-        total_data = len(self.dataset())
-        total_pages = ceil(total_data / page_size)
-
+        total_pages = ceil(len(self.dataset()) / page_size)
         return {
-            'page_size': len(page_data),
-            'page': page,
-            'data': page_data,
-            'next_page': page + 1 if page < total_pages else None,
-            'prev_page': page - 1 if page != 1 else None,
-            'total_pages': total_pages
-        }
+                page_size: len(self.get_page(page, page_size)),
+                page: page,
+                data: self.get_page(page, page_size),
+                next_page: page + 1 if page < total_pages else None,
+                prev_page: page - 1 if page != 1 else None,
+                total_pages: total_pages
+                }
