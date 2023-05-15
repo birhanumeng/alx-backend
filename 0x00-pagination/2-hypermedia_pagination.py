@@ -2,7 +2,7 @@
 """ Simple pagination implementation for the csv data file. """
 
 import csv
-import math
+from math import ceil
 from typing import List
 
 index_range = __import__('0-simple_helper_function').index_range
