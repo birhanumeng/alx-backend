@@ -40,30 +40,29 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
-        ''' Return dict of pagination data.
-            Dict key/value pairs consist of the following:
-              index - the start index of the page
-              next_index - the start index of the next page
-              page_size
-              page_size - the number of items on the page
-              data - the data in the page itself '''
+        """ Takes two integer arguments: index with a None default value and
+            page_size with default value of 10.
+            It return a dictionary with the following key-value pairs:
+                - index:  the current start index of the return page.
+                - next_index: the next index to query with.
+                - page_size: the current page size.
+                - data: the actual page of the dataset.
+        """
         assert 0 <= index < len(self.dataset())
-
         indexed_dataset = self.indexed_dataset()
         indexed_page = {}
 
-        i = index
-        while (len(indexed_page) < page_size and i < len(self.dataset())):
-            if i in indexed_dataset:
-                indexed_page[i] = indexed_dataset[i]
-            i += 1
+        idx = index
+        while (len(indexed_page) < page_size and idx < len(self.dataset())):
+            if idx in indexed_dataset:
+                indexed_page[idx] = indexed_dataset[idx]
+            idx += 1
 
-        page = list(indexed_page.values())
-        page_indices = indexed_page.keys()
-
+        page_key = indexed_page.keys()
+        page_value = list(indexed_page.values())
         return {
             'index': index,
-            'next_index': max(page_indices) + 1,
-            'page_size': len(page),
-            'data': page
+            'next_index': max(page_key) + 1,
+            'page_size': len(page_value),
+            'data': page_value
         }
