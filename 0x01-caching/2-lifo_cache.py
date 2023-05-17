@@ -14,7 +14,7 @@ class LIFOCache(BaseCaching):
         self.keys = []
 
     def put(self, key, item):
-        """ Add an item in to the cache. When the length of the 
+        """ Add an item in to the cache. When the length of the
             dictionary is greater than BaseCaching.MAX_ITEMS(4),
             the last inserted element is discarded.
         """
@@ -22,8 +22,6 @@ class LIFOCache(BaseCaching):
             self.cache_data[key] = item
             if key not in self.keys:
                 self.keys.append(key)
-            else:
-                self.keys.append(self.keys.pop(self.keys.index(key)))
             if len(self.keys) > BaseCaching.MAX_ITEMS:
                 discard_key = self.keys.pop(-2)
                 del self.cache_data[discard_key]
