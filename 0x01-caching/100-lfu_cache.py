@@ -29,6 +29,7 @@ class LFUCache(BaseCaching):
                 self.num_ref[key] = 1
             else:
                 self.num_ref[key] = self.num_ref[key] + 1
+                self.keys.append(self.keys.pop(self.keys.index(key)))
             if len(self.keys) > BaseCaching.MAX_ITEMS:
                 lfu = min(list(self.num_ref.values()))
                 dis = [k for k, v in self.num_ref.items() if v == lfu][0]
@@ -38,5 +39,6 @@ class LFUCache(BaseCaching):
     def get(self, key):
         """ Get an item by key. """
         if key and key in self.cache_data.keys():
+            self.keys.append(self.keys.pop(self.keys.index(key)))
             return self.cache_data[key]
         return None
