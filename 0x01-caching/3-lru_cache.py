@@ -23,20 +23,20 @@ class LRUCache(BaseCaching):
         self.keys = []
 
     def put(self, key, item):
-        ''' Add key/value pair to cache data.
-            If cache is at max capacity (specified by BaseCaching.MAX_ITEMS),
-            discard least recently used entry in cache to accommodate new
-            entry. '''
-        if key is not None and item is not None:
+        """ Add an item in to the cache. When the length of the
+            dictionary is greater than BaseCaching.MAX_ITEMS(4),
+            the least recently used element is discarded.
+        """
+        if key and item:
             self.cache_data[key] = item
             if key not in self.keys:
                 self.keys.append(key)
             else:
                 self.keys.append(self.keys.pop(self.keys.index(key)))
             if len(self.keys) > BaseCaching.MAX_ITEMS:
-                discard = self.keys.pop(0)
-                del self.cache_data[discard]
-                print('DISCARD: {:s}'.format(discard))
+                discard_key = self.keys.pop(0)
+                del self.cache_data[discard_key]
+                print("DISCARD: {:s}".format(discard_key))
 
     def get(self, key):
         ''' Return value stored in `key` key of cache.
