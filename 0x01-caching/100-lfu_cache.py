@@ -39,6 +39,7 @@ class LFUCache(BaseCaching):
     def get(self, key):
         """ Get an item by key. """
         if key and key in self.cache_data.keys():
+            self.num_ref[key] = self.num_ref[key] + 1
             self.keys.append(self.keys.pop(self.keys.index(key)))
             return self.cache_data[key]
         return None
