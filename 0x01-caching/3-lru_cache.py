@@ -39,9 +39,7 @@ class LRUCache(BaseCaching):
                 print("DISCARD: {:s}".format(discard_key))
 
     def get(self, key):
-        ''' Return value stored in `key` key of cache.
-            If key is None or does not exist in cache, return None. '''
-        if key is not None and key in self.cache_data:
-            self.keys.append(self.keys.pop(self.keys.index(key)))
+        """ Get an item by key. """
+        if key and key in self.cache_data.keys():
             return self.cache_data[key]
         return None
