@@ -14,10 +14,10 @@ class LRUCache(BaseCaching):
         self.keys = []
 
     def put(self, key, item):
-        ''' Add key/value pair to cache data.
-            If cache is at max capacity (specified by BaseCaching.MAX_ITEMS),
-            discard least recently used entry in cache to accommodate new
-            entry. '''
+        """ Add an item in to the cache. When the length of the
+            dictionary is greater than BaseCaching.MAX_ITEMS(4),
+            the least recently used element is discarded.
+        """
         if key is not None and item is not None:
             self.cache_data[key] = item
             if key not in self.keys:
