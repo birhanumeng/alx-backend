@@ -32,7 +32,7 @@ class LFUCache(BaseCaching):
                 self.keys.append(self.keys.pop(self.keys.index(key)))
             if len(self.keys) > BaseCaching.MAX_ITEMS:
                 lfu = min(list(self.num_ref.values()))
-                dis = [k for k, v in self.num_ref.items() if v == lfu]
+                dis = [k for k, v in self.num_ref.items() if v == lfu][0]
                 del self.cache_data[dis]
                 print("DISCARD: {}".format(dis))
 
