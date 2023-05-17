@@ -14,10 +14,10 @@ class MRUCache(BaseCaching):
         self.keys = []
 
     def put(self, key, item):
-        ''' Add key/value pair to cache data.
-            If cache is at max capacity (specified by BaseCaching.MAX_ITEMS),
-            discard most recently used entry in cache to accommodate new
-            entry. '''
+        """ Add an item in to the cache. When the length of the
+            dictionary is greater than BaseCaching.MAX_ITEMS(4),
+            the most recently used element is discarded.
+        """
         if key is not None and item is not None:
             self.cache_data[key] = item
             if key not in self.keys:
@@ -25,7 +25,7 @@ class MRUCache(BaseCaching):
             else:
                 self.keys.append(self.keys.pop(self.keys.index(key)))
             if len(self.keys) > BaseCaching.MAX_ITEMS:
-                discard_item = self.keys.pop()
+                discard_item = self.keys.pop(-2)
                 del self.cache_data[discard_item]
                 print('DISCARD: {}'.format(discard_item))
 
