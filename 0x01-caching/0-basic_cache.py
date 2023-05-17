@@ -20,6 +20,6 @@ class BasicCache(BaseCaching):
 
     def get(self, key):
         """ Get an item by key. """
-        if key:
+        if key and key in self.cache_data:
             return self.cache_data[key]
         return None
