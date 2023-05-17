@@ -10,7 +10,7 @@ class FIFOCache(.BaseCaching):
         is greater than BaseCaching.MAX_ITEMS(4), the first
         inserted element is discarded.
     """
-    def __init(self):
+    def __init__(self):
         """ Initiliaze the FIFOCache object. """
         super().__init__()
         self.keys = []
