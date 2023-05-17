@@ -4,7 +4,7 @@
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class FIFOCache(.BaseCaching):
+class FIFOCache(BaseCaching):
     """ Implementing FIFO algorithm by adding key value pairs
         in to a dictionary. When the length of the dictionary
         is greater than BaseCaching.MAX_ITEMS(4), the first
