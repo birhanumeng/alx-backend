@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-""" Basic Flask app configuration. """
+""" Route module for the API - Basic Flask app """
+
 
 from flask import Flask, request, render_template
+from os import getenv
 
 app = Flask(__name__, static_url_path='')
-from os import getenv
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
