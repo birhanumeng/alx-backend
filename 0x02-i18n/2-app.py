@@ -23,10 +23,12 @@ def index():
     """ Route to 1-index.html """
     return render_template('0-index.html')
 
+
 @babel.localeselector
 def get_locale() -> str:
     """ Select best match languages """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 if __name__ == "__main__":
     app.run()
